@@ -21,5 +21,16 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Start server in background
+        run: |
+          deno run --allow-all main.ts &
+          SERVER_PID=$!
+          sleep 3
+          echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+
       - name: Run tests
         run: deno test --allow-all
+
+      - name: Stop server
+        if: always()
+        run: kill $SERVER_PID || true
