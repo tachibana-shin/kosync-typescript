@@ -31,7 +31,7 @@ export class SupabaseKv extends KvBase {
       throw error
     }
 
-    return data.value as T
+    return JSON.parse(data.value) as T
   }
 
   override async set(key: Deno.KvKey, value: unknown): Promise<void> {
@@ -40,7 +40,7 @@ export class SupabaseKv extends KvBase {
     const { error } = await this.client.from(this.tableName).upsert(
       {
         key: key.join("/"),
-        value
+        value: JSON.stringify(value)
       },
       {
         onConflict: "key"
