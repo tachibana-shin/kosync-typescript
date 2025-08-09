@@ -1,10 +1,10 @@
 # kosync-typescript
 
-A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono and can be deployed 100% free using Deno Deploy + Supabase (free).
+A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono and can be deployed 100% free using `Deno Deploy` + `Supabase` (free).
 
-- Runtime/server: Deno + Hono
-- Validation/OpenAPI: zod + @hono/zod-openapi
-- Storage: KV abstraction with multiple drivers (SQLite, Deno KV, Supabase, Redis, Postgres, MongoDB, DuckDB)
+- Runtime/server: `Deno` + `Hono`
+- Validation/OpenAPI: `zod` + `@hono/zod-openapi`
+- Storage: KV abstraction with multiple drivers (`SQLite`, `Deno KV`, `Supabase`, `Redis`, `Postgres`, `MongoDB`, `DuckDB`)
 - API base path: `/v1`
 
 
@@ -17,10 +17,23 @@ A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono
 ## How to deploy free?
 1. Register [Supabase](https://supabase.com)
 2. Create project `Supabase`
-3. Get `SUPABASE_URL` and `SUPABASE_KEY`
-4. Deploy to [Deno Deploy](https://deno.com/deploy)
-5. Set env get from `3)` to settings project
-6. Enjoy
+3. Create table `kv_store` (or table name your set in env `TABLE_NAME`) with `key` is `TEXT` and `UNIQUE`, `value` is `TEXT`
+4. Get `SUPABASE_URL` and `SUPABASE_KEY`
+5. Deploy to [Deno Deploy](https://deno.com/deploy)
+6. Set env get from `4)` to settings project
+7. Add your server to `Kindle` with url `<base url>/v1`. Example: `https://kosync-typescript.tachibana-shin.deno.net/v1`
+8. Enjoy
+
+> [!TIP]
+> 
+> If you see this in log Deno
+> 
+> <img width="490" height="111" alt="image" src="https://github.com/user-attachments/assets/4178eeb2-b164-415d-b955-5ec3c956793b" />
+>
+> Make sure you have turned off the `RLS` of the `kv_store`
+
+In addition, you can use my server has been deployed at `https: //kosync-typescript.tachibana-shin.deno.net/v1` but I do not guarantee your data always online
+
 
 ## Directory structure
 - `main.ts`: bootstraps Hono app, middleware, routes, and Deno.serve
