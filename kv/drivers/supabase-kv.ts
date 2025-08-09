@@ -31,8 +31,6 @@ export class SupabaseKv extends KvBase {
       throw error
     }
 
-    console.log(data.value)
-
     return JSON.parse(data.value) as T
   }
 
