@@ -8,7 +8,10 @@ function clearDb() {
   const db = new DatabaseSync(
     resolve(import.meta.dirname ?? "", "sqlite.db") + "?mode=ro"
   )
-  db.exec(`DELETE FROM kv`)
+  try {
+    db.exec(`DELETE FROM kv`)
+  // deno-lint-ignore no-empty
+  } catch {}
 }
 
 // Helper: send HTTP request
