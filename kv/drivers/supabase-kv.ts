@@ -4,7 +4,7 @@ import { KvBase } from "../base.ts"
 
 export class SupabaseKv extends KvBase {
   private client?: SupabaseClient
-  private tableName = "kv_store"
+  private tableName = Deno.env.get("TABLE_NAME") ?? "kv_store"
 
   // deno-lint-ignore require-await
   override async init(): Promise<void> {
