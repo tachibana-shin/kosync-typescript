@@ -1,6 +1,6 @@
 # kosync-typescript
 
-A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono and can be deployed 100% free using Deno Deploy + Supabase (free tier).
+A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono and can be deployed 100% free using Deno Deploy + Supabase (free).
 
 - Runtime/server: Deno + Hono
 - Validation/OpenAPI: zod + @hono/zod-openapi
@@ -14,6 +14,13 @@ A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono
 - Persist reading progress per document and retrieve the latest record
 - Healthcheck endpoint
 
+## How to deploy free?
+1. Register [Supabase](https://supabase.com)
+2. Create project `Supabase`
+3. Get `SUPABASE_URL` and `SUPABASE_KEY`
+4. Deploy to [Deno Deploy](https://deno.com/deploy)
+5. Set env get from `3)` to settings project
+6. Enjoy
 
 ## Directory structure
 - `main.ts`: bootstraps Hono app, middleware, routes, and Deno.serve
@@ -38,7 +45,7 @@ A compact KOSync backend written in TypeScript for KOReader. Runs on Deno + Hono
 ## Run locally
 Requirements: Deno v1.41+ (npm compatibility enabled).
 
-By default the project uses the SQLite driver (see `kv/index.ts`). You can:
+By default the project uses the SQLite driver (see `kv/index.ts`) in test. You can:
 - Keep SQLite for local development, or
 - Switch to Deno KV for a zero-setup local store
 
