@@ -22,4 +22,4 @@ jobs:
           deno-version: v2.x
 
       - name: Run tests
-        run: deno -A test
+        run: deno test --allow-all
