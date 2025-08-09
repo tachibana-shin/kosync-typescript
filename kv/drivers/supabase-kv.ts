@@ -37,10 +37,15 @@ export class SupabaseKv extends KvBase {
   override async set(key: Deno.KvKey, value: unknown): Promise<void> {
     assert(this.client, "Supabase not initialized")
 
-    const { error } = await this.client.from(this.tableName).upsert({
-      key: key.join("/"),
-      value
-    })
+    const { error } = await this.client.from(this.tableName).upsert(
+      {
+        key: key.join("/"),
+        value
+      },
+      {
+        onConflict: "key"
+      }
+    )
 
     if (error) throw error
   }

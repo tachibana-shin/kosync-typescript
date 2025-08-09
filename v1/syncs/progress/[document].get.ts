@@ -60,6 +60,8 @@ app.openapi(getProgressRoute, async (c) => {
   const key = [SyncsConstants.doc_key(username, document)]
   const stored = await kv.get<Record<string, unknown>>(key)
 
+  console.log({ stored })
+
   if (!stored) {
     return c.json({}, 200)
   }
