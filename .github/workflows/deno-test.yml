@@ -23,7 +23,7 @@ jobs:
 
       - name: Start server in background
         run: |
-          deno run --allow-all main.ts &
+          DENO_TEST=TRUE deno run --allow-all main.ts &
           SERVER_PID=$!
           sleep 3
           echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
